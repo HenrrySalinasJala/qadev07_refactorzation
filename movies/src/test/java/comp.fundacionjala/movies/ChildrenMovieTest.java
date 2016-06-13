@@ -1,12 +1,13 @@
 package comp.fundacionjala.movies;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
-
 public class ChildrenMovieTest {
+
     @Test
     public void aChildrenMovieInstanceIsNotNull() {
         assertNotNull(new ChildrenMovie("new movie title"));
@@ -22,5 +23,11 @@ public class ChildrenMovieTest {
     public void aChildrenMovieCanCalculateItsRentalCharge() {
         IMovie movie = new ChildrenMovie("children title movie");
         assertEquals(4.5, movie.calculateRentalCharge(5), 00000000001);
+    }
+
+    @Test
+    public void aChildrenMovieCanCalculateTheFrequentRenterPoints() {
+        ChildrenMovie movie = new ChildrenMovie("title");
+        assertEquals(1, movie.calculateRenterFrequentPoints(10));
     }
 }

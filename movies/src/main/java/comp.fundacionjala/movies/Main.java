@@ -1,6 +1,7 @@
 package comp.fundacionjala.movies;
 
 public class Main {
+
     public static void main(String[] args) {
         Customer customer = new Customer("Henrry");
         customer.addRental(new Rental(new ChildrenMovie("Resident Evil I"), 2));

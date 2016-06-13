@@ -1,10 +1,10 @@
 package comp.fundacionjala.movies;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
 
 public class RentalTest {
 
@@ -37,32 +37,9 @@ public class RentalTest {
     }
 
     @Test
-    public void theMovieInstanceCanbeExtracted() {
+    public void theMovieInstanceCanBeExtracted() {
         IMovie movie = new RegularMovie("title");
         Rental rental = new Rental(movie, 2);
         assertTrue(rental.getMovie() instanceof Movie);
     }
-
-    @Test
-    public void aCustomerInstanceCanCalculateRenterPointsWhenPriceCodeIsRelease() {
-        IMovie movie = new NewReleaseMovie("title");
-        Rental rental = new Rental(movie, 10);
-        assertEquals(2, rental.calculateRenterFrequentPoints());
-    }
-
-    @Test
-    public void aCustomerInstanceCanCalculateRenterPointsWhenCodePriceIsChildren() {
-        IMovie movie = new ChildrenMovie("title");
-        Rental rental = new Rental(movie, 10);
-        assertEquals(1, rental.calculateRenterFrequentPoints());
-    }
-
-    @Test
-    public void aCustomerInstanceCanCalculateRenterPointsWhenCodePriceIsRegular() {
-        IMovie movie = new RegularMovie("title");
-        Rental rental = new Rental(movie, 10);
-        assertEquals(1, rental.calculateRenterFrequentPoints());
-    }
-
-
 }
