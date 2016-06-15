@@ -20,7 +20,7 @@ public class RentalTest {
         Rental rental = new Rental(movie, 2);
         assertTrue(rental instanceof Rental);
     }
-    
+
     @Test
     public void theDaysRentedCanBeUpdated() {
         IMovie movie = new RegularMovie("title");
