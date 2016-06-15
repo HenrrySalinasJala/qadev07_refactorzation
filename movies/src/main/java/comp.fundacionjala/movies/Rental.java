@@ -21,9 +21,9 @@ class Rental {
         this.daysRented = daysRented;
     }
 
-    public Movie getMovie() {
+    public IMovie getMovie() {
 
-        return (Movie) movie;
+        return  movie;
     }
 
     public double calculateRentalCharge(IMovie movie) {
