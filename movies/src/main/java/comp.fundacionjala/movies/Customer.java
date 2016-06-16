@@ -9,7 +9,7 @@ class Customer {
     private static final String TABULATION = "\t";
     private String name;
     private Set<Rental> rentalSet = new HashSet<Rental>();
-    
+
     public Customer(String name) {
         this.name = name;
     }

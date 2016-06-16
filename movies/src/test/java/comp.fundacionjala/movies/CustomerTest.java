@@ -62,6 +62,7 @@ public class CustomerTest {
         customer.addRental(rental3);
         assertEquals(9.5, customer.calculateTotalCharge(), 0000000001);
     }
+
     @Test
     public void aCustomerCanCalculateTheTotalFrequentRenterPoints() {
         IMovie movie1 = new ChildrenMovie("Resident Evil I");
