@@ -2,32 +2,41 @@ package comp.fundacionjala.movies;
 
 import org.junit.Test;
 
+import static comp.fundacionjala.movies.Constants.DELTA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class RegularMovieTest {
 
+    private static final String movieTitle = "new movie title";
+
+    private static final int daysRented = 5;
+
+    private IMovie movie;
+
     @Test
-    public void aRegularMovieInstanceIsNotNull() {
-        assertNotNull(new RegularMovie("new movie title"));
+    public void testRegularMovieInstanceIsNotNull() {
+        assertNotNull(new RegularMovie(movieTitle));
     }
 
     @Test
-    public void aRegularMovieCanBeCreatedOnlyWithItsTitle() {
-        RegularMovie movie = new RegularMovie("new movie title");
+    public void testRegularMovieCanBeCreatedOnlyWithItsTitle() {
+        movie = new RegularMovie(movieTitle);
         assertTrue(movie instanceof RegularMovie);
     }
 
     @Test
-    public void aRegularMovieCanCalculateItsRentalCharge() {
-        IMovie movie = new RegularMovie("children title movie");
-        assertEquals(6.5, movie.calculateRentalCharge(5), 00000000001);
+    public void testRegularMovieCanCalculateItsRentalCharge() {
+        movie = new RegularMovie(movieTitle);
+        double expectedRentalCharge = 6.5;
+        assertEquals(expectedRentalCharge, movie.calculateRentalCharge(daysRented), DELTA);
     }
 
     @Test
-    public void aRegularMovieCanCalculateTheFrequentRenterPoints() {
-        RegularMovie movie = new RegularMovie("title");
-        assertEquals(1, movie.calculateRenterFrequentPoints(10));
+    public void testRegularMovieCanCalculateTheFrequentRenterPoints() {
+        movie = new RegularMovie(movieTitle);
+        int expectedFrequentPoints = 1;
+        assertEquals(expectedFrequentPoints, movie.calculateRenterFrequentPoints(daysRented));
     }
 }

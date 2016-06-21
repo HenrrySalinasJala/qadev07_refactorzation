@@ -3,6 +3,7 @@ package comp.fundacionjala.movies;
 class Rental {
 
     private IMovie movie;
+
     private int daysRented;
 
     public Rental(IMovie movie, int daysRented) {

@@ -6,8 +6,11 @@ import java.util.Set;
 class Customer {
 
     private static final String BREAK_LINE = "\n";
+
     private static final String TABULATION = "\t";
+
     private String name;
+
     private Set<Rental> rentalSet = new HashSet<Rental>();
 
     public Customer(String name) {
@@ -48,7 +51,7 @@ class Customer {
         result.append(getName());
         result.append(BREAK_LINE);
         for (Rental rental : rentalSet) {
-            double charge = rental.calculateRentalCharge((IMovie) rental.getMovie());
+            double charge = rental.calculateRentalCharge(rental.getMovie());
             result.append(TABULATION);
             result.append(rental.getMovie().getTitle());
             result.append(TABULATION);

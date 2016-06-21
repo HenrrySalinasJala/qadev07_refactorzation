@@ -1,45 +1,34 @@
 package comp.fundacionjala.movies;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class RentalTest {
 
+    private static IMovie movie;
+
+    private static final int daysRented = 2;
+
+    @BeforeClass
+    public static void setUp() {
+
+        String movieTitle = "title";
+        movie = new RegularMovie(movieTitle);
+    }
+
     @Test
     public void aRentalInstanceIsNotNull() {
-        IMovie movie = new RegularMovie("title");
-        assertNotNull(new Rental(movie, 1));
+
+        assertNotNull(new Rental(movie, daysRented));
     }
 
     @Test
     public void aRentalInstanceCanBeCreatedWithAMovieAndDaysRented() {
-        IMovie movie = new RegularMovie("title");
-        Rental rental = new Rental(movie, 2);
+
+        Rental rental = new Rental(movie, daysRented);
         assertTrue(rental instanceof Rental);
-    }
-
-    @Test
-    public void theDaysRentedCanBeUpdated() {
-        IMovie movie = new RegularMovie("title");
-        Rental rental = new Rental(movie, 2);
-        rental.setDaysRented(4);
-        assertEquals(4, rental.getDaysRented());
-    }
-
-    @Test
-    public void daysRentedCanBeExtracted() {
-        IMovie movie = new RegularMovie("title");
-        Rental rental = new Rental(movie, 2);
-        assertEquals(2, rental.getDaysRented());
-    }
-
-    @Test
-    public void theMovieInstanceCanBeExtracted() {
-        IMovie movie = new RegularMovie("title");
-        Rental rental = new Rental(movie, 2);
-        assertTrue(rental.getMovie() instanceof Movie);
     }
 }
