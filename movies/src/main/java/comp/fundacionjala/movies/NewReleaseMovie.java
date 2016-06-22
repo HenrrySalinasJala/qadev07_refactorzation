@@ -19,10 +19,6 @@ class NewReleaseMovie extends Movie implements IMovie {
     }
 
     public int calculateRenterFrequentPoints(int daysRented) {
-
-        if (daysRented > threshold_days) {
-            return frequent_renter_points + BONUS_POINTS;
-        }
-        return frequent_renter_points;
+        return daysRented > threshold_days ? frequent_renter_points + BONUS_POINTS : frequent_renter_points;
     }
 }
