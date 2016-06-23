@@ -1,6 +1,6 @@
 package comp.fundacionjala.movies;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import static comp.fundacionjala.movies.Constants.DELTA;
@@ -12,33 +12,34 @@ public class ChildrenMovieTest {
 
     public static final int DAYS_RENTED = 5;
 
-    private static IMovie movie;
+    private IMovie movie;
 
     private static String MOVIE_TITLE = "new movie title";
-    @BeforeClass
-    public static void setUp(){
+
+    @Before
+    public void setUp() {
         movie = new ChildrenMovie(MOVIE_TITLE);
     }
 
     @Test
     public void testChildrenMovieInstanceIsNotNull() {
-        assertNotNull(new ChildrenMovie(MOVIE_TITLE));
+        assertNotNull("The object should not be null", new ChildrenMovie(MOVIE_TITLE));
     }
 
     @Test
     public void testChildrenMovieCanBeCreatedOnlyWithItsTitle() {
-        assertTrue(movie instanceof ChildrenMovie);
+        assertTrue("The object should be a ChildrenMovie instance", movie instanceof ChildrenMovie);
     }
 
     @Test
     public void testChildrenMovieCanCalculateItsRentalCharge() {
-        double expectedCharge = 4.5;
-        assertEquals(expectedCharge, movie.calculateRentalCharge(DAYS_RENTED), DELTA);
+        final double expectedCharge = 4.5;
+        assertEquals("The expected rental charge does not match", expectedCharge, movie.calculateRentalCharge(DAYS_RENTED), DELTA);
     }
 
     @Test
     public void testChildrenMovieCanCalculateTheFrequentRenterPoints() {
-        int expectedRenterPoints = 1;
-        assertEquals(expectedRenterPoints, movie.calculateRenterFrequentPoints(DAYS_RENTED));
+        final int expectedRenterPoints = 1;
+        assertEquals("The expected customer frequent points does not match", expectedRenterPoints, movie.calculateRenterFrequentPoints(DAYS_RENTED));
     }
 }

@@ -1,6 +1,6 @@
 package comp.fundacionjala.movies;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import static comp.fundacionjala.movies.Constants.DELTA;
@@ -12,74 +12,68 @@ public class CustomerTest {
 
     private static final String customerName = "Juan";
 
-    private static Rental rentalChildrenMovie;
+    private Rental rentalChildrenMovie;
 
-    private static Rental rentalRegularMovie;
+    private Rental rentalRegularMovie;
 
-    private static Rental rentalNewReleaseMovie;
+    private Rental rentalNewReleaseMovie;
 
-    private static int daysRented = 2;
+    private final static int DAYS_RENTED = 2;
 
-    private static Customer customer;
+    private Customer customer;
 
-    @BeforeClass
-    public static void setUp() {
+    @Before
+    public void setUp() {
         String childrenMovieTitle = "Resident Evil I";
         String regularMovieTitle = "Resident Evil II";
         String newReleaseMovieTitle = "Resident Evil III";
-        rentalChildrenMovie = new Rental(new ChildrenMovie(childrenMovieTitle), daysRented);
-        rentalRegularMovie = new Rental(new RegularMovie(regularMovieTitle), daysRented);
-        rentalNewReleaseMovie = new Rental(new NewReleaseMovie(newReleaseMovieTitle), daysRented);
+        rentalChildrenMovie = new Rental(new ChildrenMovie(childrenMovieTitle), DAYS_RENTED);
+        rentalRegularMovie = new Rental(new RegularMovie(regularMovieTitle), DAYS_RENTED);
+        rentalNewReleaseMovie = new Rental(new NewReleaseMovie(newReleaseMovieTitle), DAYS_RENTED);
+        customer = new Customer(customerName);
     }
 
     @Test
     public void testCustomerInstanceIsNotNull() {
-        customer = new Customer(customerName);
-        assertNotNull(customer);
+        assertNotNull("The object should not be null", customer);
     }
 
     @Test
     public void testCustomerInstanceCanBeCreatedGivenACustomerName() {
-        customer = new Customer(customerName);
-        assertTrue(customer instanceof Customer);
+        assertTrue("The object should be a Customer instance", customer instanceof Customer);
     }
 
     @Test
     public void testMoreThanTwoRentalInstancesCanBeAddedToCustomerShoppingCart() {
-
-        customer = new Customer(customerName);
         customer.addRental(rentalRegularMovie);
         customer.addRental(rentalChildrenMovie);
-        assertEquals(2, customer.getRentals().size());
+        final int expectedRentals = 2;
+        assertEquals("The expected number of rentals does not match", expectedRentals, customer.getRentals().size());
     }
 
     @Test
     public void testDuplicateRentalInstanceCannotBeAddedToCustomerShoppingCart() {
-
-        customer = new Customer(customerName);
         customer.addRental(rentalRegularMovie);
         customer.addRental(rentalRegularMovie);
-        assertEquals(1, customer.getRentals().size());
+        final int expectedRental = 1;
+        assertEquals("The expected number of rentals does not match", expectedRental, customer.getRentals().size());
     }
 
     @Test
     public void testCustomerCanCalculateTheTotalChargeOfMultipleMoviesRented() {
-        customer = new Customer(customerName);
         customer.addRental(rentalChildrenMovie);
         customer.addRental(rentalRegularMovie);
         customer.addRental(rentalNewReleaseMovie);
-        double expectedCharge = 9.5;
-        assertEquals(expectedCharge, customer.calculateTotalCharge(), DELTA);
+        final double expectedCharge = 9.5;
+        assertEquals("The expected rental charge does not match", expectedCharge, customer.calculateTotalCharge(), DELTA);
     }
 
     @Test
-    public void aCustomerCanCalculateTheTotalFrequentRenterPoints() {
-
-        customer = new Customer(customerName);
+    public void testCustomerCanCalculateTheTotalFrequentRenterPoints() {
         customer.addRental(rentalChildrenMovie);
         customer.addRental(rentalRegularMovie);
         customer.addRental(rentalNewReleaseMovie);
-        int expectedFrequentPoints = 4;
-        assertEquals(expectedFrequentPoints, customer.calculateTotalFrequentRenterPoints());
+        final int expectedFrequentPoints = 4;
+        assertEquals("The expected customer frequent points does not match", expectedFrequentPoints, customer.calculateTotalFrequentRenterPoints());
     }
 }

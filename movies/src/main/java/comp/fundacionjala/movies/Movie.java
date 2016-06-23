@@ -1,8 +1,12 @@
 package comp.fundacionjala.movies;
 
+/**
+ * abstract class to initialize the common methods and attributes
+ * of the methods that extends this class
+ */
 abstract class Movie {
 
-    private String title;
+    final private String title;
 
     protected final double charge_per_rental_day;
 

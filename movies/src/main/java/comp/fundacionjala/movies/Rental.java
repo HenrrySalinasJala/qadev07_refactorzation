@@ -1,5 +1,8 @@
 package comp.fundacionjala.movies;
 
+/**
+ * This class handle the logic related to manage the rental process
+ */
 class Rental {
 
     private IMovie movie;
@@ -8,14 +11,6 @@ class Rental {
 
     public Rental(IMovie movie, int daysRented) {
         this.movie = movie;
-        this.daysRented = daysRented;
-    }
-
-    public int getDaysRented() {
-        return daysRented;
-    }
-
-    public void setDaysRented(int daysRented) {
         this.daysRented = daysRented;
     }
 

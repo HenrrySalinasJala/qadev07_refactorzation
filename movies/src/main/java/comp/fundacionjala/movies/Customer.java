@@ -3,6 +3,9 @@ package comp.fundacionjala.movies;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Concrete class that implements the logic for manage the functionality that belongs to a Customer
+ */
 class Customer {
 
     private static final String BREAK_LINE = "\n";
@@ -29,6 +32,11 @@ class Customer {
         return rentalSet;
     }
 
+    /**
+     * This method returns the total frequent renter points after iterate a set of movies to rent
+     *
+     * @return total frequent points
+     */
     public int calculateTotalFrequentRenterPoints() {
         int frequentRenterPoints = 0;
         for (Rental rental : rentalSet) {
@@ -37,14 +45,24 @@ class Customer {
         return frequentRenterPoints;
     }
 
+    /**
+     * This method returns the total rental charge after iterate a set of movies to rent
+     *
+     * @return total charge
+     */
     public double calculateTotalCharge() {
         double totalCharge = 0;
         for (Rental rental : rentalSet) {
-            totalCharge += rental.calculateRentalCharge((IMovie) rental.getMovie());
+            totalCharge += rental.calculateRentalCharge(rental.getMovie());
         }
         return totalCharge;
     }
 
+    /**
+     * This method returns a detail of the rental
+     *
+     * @return rental detail
+     */
     public String statement() {
         StringBuilder result = new StringBuilder();
         result.append("Rental Record for ");
