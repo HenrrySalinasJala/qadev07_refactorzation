@@ -6,7 +6,9 @@ package comp.fundacionjala.movies;
  */
 abstract class Movie {
 
-    final private String title;
+    private final String title;
+
+    protected static final int FREQUENT_RENTER_POINTS = 1;
 
     protected final double charge_per_rental_day;
 

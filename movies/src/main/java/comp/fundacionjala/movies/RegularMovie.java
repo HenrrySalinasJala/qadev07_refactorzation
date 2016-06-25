@@ -11,8 +11,6 @@ class RegularMovie extends Movie implements IMovie {
 
     private static final int THRESHOLD_DAYS = 2;
 
-    private static final int FREQUENT_RENTER_POINTS = 1;
-
     public RegularMovie(String title) {
         super(title, CHARGE_PER_RENTAL_DAY, THRESHOLD_DAYS, FREQUENT_RENTER_POINTS);
     }
